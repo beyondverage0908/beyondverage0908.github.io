@@ -79,13 +79,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mdiep blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="很高兴能在项目中使用到RSA，AES128，以及MD5，用以保证客户端(Client)和服务端(Server)之间的通信安全。接下来会尽力的描述清楚关于本次使用的流程。具体关于算法的细节，自行Wiki。   原来只是对加密这一块很简单的了解，比如只知道一些对称加密，非对称加密，md5单向加密等。通过本次的学习，很惊艳于可以将多种加密方式那么完美的结合到一起。让整个通信过程变得如此美妙。虽然增加了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/blog-1/index.html">
 <meta property="og:site_name" content="Mdiep blog">
+<meta property="og:description" content="很高兴能在项目中使用到RSA，AES128，以及MD5，用以保证客户端(Client)和服务端(Server)之间的通信安全。接下来会尽力的描述清楚关于本次使用的流程。具体关于算法的细节，自行Wiki。   原来只是对加密这一块很简单的了解，比如只知道一些对称加密，非对称加密，md5单向加密等。通过本次的学习，很惊艳于可以将多种加密方式那么完美的结合到一起。让整个通信过程变得如此美妙。虽然增加了">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1626952-b9991bb49d2f4f42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1626952-d672dbe8b91fa7ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1626952-103e1ca8ed1d8540.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-11T15:37:32.690Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mdiep blog">
+<meta name="twitter:title" content="结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理">
+<meta name="twitter:description" content="很高兴能在项目中使用到RSA，AES128，以及MD5，用以保证客户端(Client)和服务端(Server)之间的通信安全。接下来会尽力的描述清楚关于本次使用的流程。具体关于算法的细节，自行Wiki。   原来只是对加密这一块很简单的了解，比如只知道一些对称加密，非对称加密，md5单向加密等。通过本次的学习，很惊艳于可以将多种加密方式那么完美的结合到一起。让整个通信过程变得如此美妙。虽然增加了">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1626952-b9991bb49d2f4f42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -115,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/11/blog-1/"/>
 
 
 
 
 
-  <title>Mdiep blog</title>
+  <title>结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理 | Mdiep blog</title>
   
 
 
@@ -140,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,257 +221,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mdiep">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mdiep blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/11/test/" itemprop="url">test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T22:48:19+08:00">
-                2018-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>this is my first blog that name is medip</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mdiep">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mdiep blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/11/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-11T22:30:41+08:00">
-                2018-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -494,9 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/11/blog-1/" itemprop="url">结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理</a></h1>
+          <h1 class="post-title" itemprop="name headline">结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理</h1>
         
 
         <div class="post-meta">
@@ -546,9 +303,7 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <p>很高兴能在项目中使用到RSA，AES128，以及MD5，用以保证客户端(Client)和服务端(Server)之间的通信安全。接下来会尽力的描述清楚关于本次使用的流程。具体关于算法的细节，自行Wiki。</p>
 </blockquote>
 <blockquote>
@@ -658,8 +413,6 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
 </li>
 </ol>
 
-          
-        
       
     </div>
     
@@ -676,12 +429,28 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/11/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -691,10 +460,11 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -702,6 +472,10 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
 
 
           
+
+  
+
+
 
         </div>
         
@@ -722,8 +496,17 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -765,6 +548,22 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的概念，文章可能会涉及到"><span class="nav-number">1.</span> <span class="nav-text">简单的概念，文章可能会涉及到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端，服务端的通信逻辑"><span class="nav-number">2.</span> <span class="nav-text">客户端，服务端的通信逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加签和验签"><span class="nav-number">3.</span> <span class="nav-text">加签和验签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程图描述上文"><span class="nav-number">4.</span> <span class="nav-text">流程图描述上文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例代码"><span class="nav-number">5.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA公钥-生成自签名证书"><span class="nav-number">6.</span> <span class="nav-text">RSA公钥-生成自签名证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐工具"><span class="nav-number">7.</span> <span class="nav-text">推荐工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -898,6 +697,10 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
