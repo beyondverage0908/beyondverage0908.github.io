@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="WKWebView,WKWebView无法调用delegate,WKWebView无法释放," />
+  <meta name="keywords" content="Html CSS 居中设置," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
-<meta name="keywords" content="WKWebView,WKWebView无法调用delegate,WKWebView无法释放">
+<meta name="description" content="水平居中设置1、行内元素设置 text-align:center 2、定宽块状元素设置 左右 margin 值为 auto 3、不定宽块状元素a:在元素外加入 table 标签（完整的，包括 table、tbody、tr、td），该元素写在 td 内，然后设置 margin 的值为 autob:给该元素设置 displa:inine 方法c:父元素设置 position:relative 和 le">
+<meta name="keywords" content="Html CSS 居中设置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于使用WKWebView时，ViewController不调用dealloc方法的记录">
-<meta property="og:url" content="http://yoursite.com/2018/04/12/blog-2/index.html">
+<meta property="og:title" content="用 CSS 实现元素垂直居中">
+<meta property="og:url" content="http://yoursite.com/2018/04/12/blog-5/index.html">
 <meta property="og:site_name" content="Mdiep blog">
-<meta property="og:description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
+<meta property="og:description" content="水平居中设置1、行内元素设置 text-align:center 2、定宽块状元素设置 左右 margin 值为 auto 3、不定宽块状元素a:在元素外加入 table 标签（完整的，包括 table、tbody、tr、td），该元素写在 td 内，然后设置 margin 的值为 autob:给该元素设置 displa:inine 方法c:父元素设置 position:relative 和 le">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-12T02:11:48.744Z">
+<meta property="og:updated_time" content="2018-04-12T02:26:02.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于使用WKWebView时，ViewController不调用dealloc方法的记录">
-<meta name="twitter:description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
+<meta name="twitter:title" content="用 CSS 实现元素垂直居中">
+<meta name="twitter:description" content="水平居中设置1、行内元素设置 text-align:center 2、定宽块状元素设置 左右 margin 值为 auto 3、不定宽块状元素a:在元素外加入 table 标签（完整的，包括 table、tbody、tr、td），该元素写在 td 内，然后设置 margin 的值为 autob:给该元素设置 displa:inine 方法c:父元素设置 position:relative 和 le">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/12/blog-2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/12/blog-5/"/>
 
 
 
 
 
-  <title>关于使用WKWebView时，ViewController不调用dealloc方法的记录 | Mdiep blog</title>
+  <title>用 CSS 实现元素垂直居中 | Mdiep blog</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/blog-2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/blog-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mdiep">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于使用WKWebView时，ViewController不调用dealloc方法的记录</h1>
+          <h1 class="post-title" itemprop="name headline">用 CSS 实现元素垂直居中</h1>
         
 
         <div class="post-meta">
@@ -262,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T09:44:02+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T10:24:56+08:00">
                 2018-04-12
               </time>
             
@@ -272,28 +272,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -322,32 +300,133 @@
       
 
       
-        <p>在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用<code>WKWebView</code>。</p>
-<p>很正常的在<code>ViewDidLoad</code>中初始化，设置<code>WKWebView</code></p>
-<pre><code>- (void)setupWKWebView {
-    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *controller = [[WKUserContentController alloc] init];
-    configuration.userContentController = controller;
-    self.contentWKWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, SCREENW, SCREENH - NAVIAGTION_HEIGHT)
-                                           configuration:configuration];
-    self.contentWKWebView.UIDelegate = self;
-    self.contentWKWebView.navigationDelegate = self;
-    self.contentWKWebView.allowsBackForwardNavigationGestures = YES;
-    // 监听进度条
-    [self.contentWKWebView addObserver:self
-                        forKeyPath:@&quot;estimatedProgress&quot;
-                           options:NSKeyValueObservingOptionNew context:nil];
-
-    // 注册JS交互对象
-    WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
-    [controller addScriptMessageHandler:self name:@&quot;vhswebview&quot;];
+        <h3 id="水平居中设置"><a href="#水平居中设置" class="headerlink" title="水平居中设置"></a>水平居中设置</h3><p>1、行内元素<br>设置 text-align:center</p>
+<p>2、定宽块状元素<br>设置 左右 margin 值为 auto</p>
+<p>3、不定宽块状元素<br>a:在元素外加入 table 标签（完整的，包括 table、tbody、tr、td），该元素写在 td 内，然后设置 margin 的值为 auto<br>b:给该元素设置 displa:inine 方法<br>c:父元素设置 position:relative 和 left:50%，子元素设置 position:relative 和 left:50%</p>
+<h3 id="垂直居中设置"><a href="#垂直居中设置" class="headerlink" title="垂直居中设置"></a>垂直居中设置</h3><p>1、父元素高度确定的单行文本<br>设置 height = line-height</p>
+<p>2、父元素高度确定的多行文本<br>a:插入 table （插入方法和水平居中一样），然后设置 vertical-align:middle<br>b:先设置 display:table-cell 再设置 vertical-align:middle</p>
+<p>在前端面试中，大都会问你div居中的方法：</p>
+<p>不过以后文笔肯定会变得更好一些的。</p>
+<p>开始这些东西之前也可以测试一下你对<a href="https://link.zhihu.com/?target=http%3A//v.youku.com/v_show/id_XMTM2MDQ2MTM2OA%3D%3D.html" target="_blank" rel="noopener">html</a>了解多少，让我们测试一下吧，<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI0NDAzOTYxMw%3D%3D%26mid%3D402309487%26idx%3D1%26sn%3Dc8b4c5298f27a9c47362fda1f9e21b12%23rd" target="_blank" rel="noopener">小测验：你对HTML5了解有多少？</a></p>
+<p><strong>今天就细数一下几种方法：</strong></p>
+<p>1，使用position:absolute,设置left、top、margin-left、margin-top的属性</p>
+<pre><code>.one{
+      position:absolute;
+      width:200px;
+      height:200px;
+      top:50%;
+      left:50%;
+      margin-top:-100px;
+      margin-left:-100px;
+      background:red;
 }
-</code></pre><p>然后加载H5页面，一切看着都很正常，但是经过多次测试，发现对应的<code>- (void)dealloc;</code>一次都没有调用，所以必然出现了内存泄漏。检查该<code>Controller</code>代码，发现诸如block的循环引用，代理等地方都没有问题。</p>
-<p>最后猜测是否是注册JS交互对象的时候，将对象本身<code>self</code>传给<code>MessageHandler</code>导致的。后面查询了一些资料，发现在Apple的development中提到了需要移除JS交互对象<code>removeScriptMessageHandlerForName</code>。</p>
-<p>所以将页面关闭<code>WKWebView</code>的<code>Controller</code>的时候，就去移除JS交互对象</p>
-<pre><code>WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
-[controller removeScriptMessageHandlerForName:@&quot;vhswebview&quot;];
-</code></pre><p>最后，就可以在关闭页面后调用<code>dealloc</code>了。</p>
+</code></pre><p>这种方法基本浏览器都能够兼容，不足之处就是需要固定宽高。</p>
+<p>2，使用position:fixed,同样设置left、top、margin-left、margin-top的属性</p>
+<pre><code>.two{
+    position:fixed;
+    width:180px;
+    height:180px;
+    top:50%;
+    left:50%;
+    margin-top:-90px;
+    margin-left:-90px;
+    background:orange;
+ }
+</code></pre><p>大家都知道的position:fixed,IE是不支持这个属性的</p>
+<p>3，利用position:fixed属性，margin:auto这个必须不要忘记了。</p>
+<pre><code> .three{
+      position:fixed;
+      width:160px;
+      height:160px;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      margin:auto;
+      background:pink;
+}
+</code></pre><p>4，利用position:absolute属性，设置top/bottom/right/left</p>
+<pre><code>.four{
+    position:absolute;
+    width:140px;
+    height:140px;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    background:black;
+}
+</code></pre><p>5，利用display:table-cell属性使内容垂直居中</p>
+<pre><code>.five{
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+    width:120px;
+    height:120px;
+    background:purple;
+}
+</code></pre><p>6，最简单的一种使行内元素居中的方法，使用line-height属性</p>
+<pre><code>.six{
+    width:100px;
+    height:100px;
+    line-height:100px;
+    text-align:center;
+    background:gray;
+}
+</code></pre><p>这种方法也很实用，比如使文字垂直居中对齐</p>
+<p>7，使用css3的display:-webkit-box属性，再设置-webkit-box-pack:center/-webkit-box-align:center</p>
+<pre><code>.seven{
+    width:90px;
+    height:90px;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    background:yellow;
+    color:black;
+ }
+</code></pre><p>8，使用css3的新属性transform:translate(x,y)属性</p>
+<pre><code> .eight{
+     position:absolute;
+    width:80px;
+    height:80px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  -webkit-transform:translate(-50%,-50%);
+  -moz-transform:translate(-50%,-50%);
+  -ms-transform:translate(-50%,-50%);
+  background:green;
+}
+</code></pre><p><strong>这个方法可以不需要设定固定的宽高，在移动端用的会比较多，在移动端css3兼容的比较好</strong></p>
+<p>9、最高大上的一种，使用:before元素</p>
+<pre><code>.nine{
+    position:fixed;
+    display:block;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    text-align:center;
+    background:rgba(0,0,0,.5);
+}
+.nine:before{
+    content:&apos;&apos;;
+    display:inline-block;
+    vertical-align:middle;
+    height:100%;
+}
+ .nine .content{
+    display:inline-block;
+    vertical-align:middle;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    color:red;
+    background:yellow;
+}
+</code></pre><p>总而言之所有的居中的方法就是你必须要掌握css属性的这个概念<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI0NDAzOTYxMw%3D%3D%26mid%3D402255125%26idx%3D3%26sn%3Df13ca64eb1bcc4bf31aefdc189ccc26b%23rd" target="_blank" rel="noopener">HTML DIV+CSS</a> ，你掌握了就可以好好的运用这些居中的东西了</p>
+<p>参考：知乎<a href="https://www.zhihu.com/question/20543196" target="_blank" rel="noopener">用 CSS 实现元素垂直居中，有哪些好的方案？</a></p>
 
       
     </div>
@@ -365,11 +444,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/WKWebView/" rel="tag"># WKWebView</a>
-          
-            <a href="/tags/WKWebView无法调用delegate/" rel="tag"># WKWebView无法调用delegate</a>
-          
-            <a href="/tags/WKWebView无法释放/" rel="tag"># WKWebView无法释放</a>
+            <a href="/tags/Html-CSS-居中设置/" rel="tag"># Html CSS 居中设置</a>
           
         </div>
       
@@ -382,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/11/blog-1/" rel="next" title="结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理">
-                <i class="fa fa-chevron-left"></i> 结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理
+              <a href="/2018/04/12/blog-4/" rel="next" title="iOS 并发编程 - Operation And NSOperation Queue">
+                <i class="fa fa-chevron-left"></i> iOS 并发编程 - Operation And NSOperation Queue
               </a>
             
           </div>
@@ -391,10 +466,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/12/blog-3/" rel="prev" title="Method Swizzling的实践 - 实现页面的统计功能">
-                Method Swizzling的实践 - 实现页面的统计功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,8 +517,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -507,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中设置"><span class="nav-number">1.</span> <span class="nav-text">水平居中设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直居中设置"><span class="nav-number">2.</span> <span class="nav-text">垂直居中设置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
