@@ -229,6 +229,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/blog-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mdiep">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mdiep blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/12/blog-2/" itemprop="url">关于使用WKWebView时，ViewController不调用dealloc方法的记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T09:44:02+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用<code>WKWebView</code>。</p>
+<p>很正常的在<code>ViewDidLoad</code>中初始化，设置<code>WKWebView</code></p>
+<pre><code>- (void)setupWKWebView {
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    WKUserContentController *controller = [[WKUserContentController alloc] init];
+    configuration.userContentController = controller;
+    self.contentWKWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, SCREENW, SCREENH - NAVIAGTION_HEIGHT)
+                                           configuration:configuration];
+    self.contentWKWebView.UIDelegate = self;
+    self.contentWKWebView.navigationDelegate = self;
+    self.contentWKWebView.allowsBackForwardNavigationGestures = YES;
+    // 监听进度条
+    [self.contentWKWebView addObserver:self
+                        forKeyPath:@&quot;estimatedProgress&quot;
+                           options:NSKeyValueObservingOptionNew context:nil];
+
+    // 注册JS交互对象
+    WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
+    [controller addScriptMessageHandler:self name:@&quot;vhswebview&quot;];
+}
+</code></pre><p>然后加载H5页面，一切看着都很正常，但是经过多次测试，发现对应的<code>- (void)dealloc;</code>一次都没有调用，所以必然出现了内存泄漏。检查该<code>Controller</code>代码，发现诸如block的循环引用，代理等地方都没有问题。</p>
+<p>最后猜测是否是注册JS交互对象的时候，将对象本身<code>self</code>传给<code>MessageHandler</code>导致的。后面查询了一些资料，发现在Apple的development中提到了需要移除JS交互对象<code>removeScriptMessageHandlerForName</code>。</p>
+<p>所以将页面关闭<code>WKWebView</code>的<code>Controller</code>的时候，就去移除JS交互对象</p>
+<pre><code>WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
+[controller removeScriptMessageHandlerForName:@&quot;vhswebview&quot;];
+</code></pre><p>最后，就可以在关闭页面后调用<code>dealloc</code>了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/blog-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -490,7 +635,7 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -498,6 +643,15 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
