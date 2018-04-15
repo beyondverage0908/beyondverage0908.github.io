@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WKWebView,UIWebView,浏览器之间内核引擎," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="WKWebView相比于UIWebView浏览器之间内核引擎的区别翻译文，原文地址 WKWebView: Differences from UIWebView browsing engine  优点 多进程，在app的主进程之外执行 使用更快的Nitro JavaScript引擎 异步执行处理JavaScript 消除某些触摸延迟 支持服务端的身份校验 支持对错误的自签名安全证书和证书进行身份验证">
+<meta name="keywords" content="WKWebView,UIWebView,浏览器之间内核引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WKWebView相比于UIWebView浏览器之间内核引擎的区别">
+<meta property="og:url" content="http://yoursite.com/2018/04/15/blog-6/index.html">
+<meta property="og:site_name" content="Mdiep">
+<meta property="og:description" content="WKWebView相比于UIWebView浏览器之间内核引擎的区别翻译文，原文地址 WKWebView: Differences from UIWebView browsing engine  优点 多进程，在app的主进程之外执行 使用更快的Nitro JavaScript引擎 异步执行处理JavaScript 消除某些触摸延迟 支持服务端的身份校验 支持对错误的自签名安全证书和证书进行身份验证">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2018-04-15T03:13:47.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WKWebView相比于UIWebView浏览器之间内核引擎的区别">
+<meta name="twitter:description" content="WKWebView相比于UIWebView浏览器之间内核引擎的区别翻译文，原文地址 WKWebView: Differences from UIWebView browsing engine  优点 多进程，在app的主进程之外执行 使用更快的Nitro JavaScript引擎 异步执行处理JavaScript 消除某些触摸延迟 支持服务端的身份校验 支持对错误的自签名安全证书和证书进行身份验证">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/15/blog-6/"/>
+
+
+
+
+
+  <title>WKWebView相比于UIWebView浏览器之间内核引擎的区别 | Mdiep</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mdiep</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程就像1+1，逻辑正确就对了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/15/blog-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mdiep">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mdiep">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WKWebView相比于UIWebView浏览器之间内核引擎的区别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-15T11:10:44+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WKWebView，UIWebView/" itemprop="url" rel="index">
+                    <span itemprop="name">WKWebView，UIWebView</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/15/blog-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/15/blog-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="WKWebView相比于UIWebView浏览器之间内核引擎的区别"><a href="#WKWebView相比于UIWebView浏览器之间内核引擎的区别" class="headerlink" title="WKWebView相比于UIWebView浏览器之间内核引擎的区别"></a>WKWebView相比于UIWebView浏览器之间内核引擎的区别</h1><p>翻译文，原文地址</p>
+<p><a href="https://docs.kioskproapp.com/article/840-wkwebview-supported-features-known-issues" target="_blank" rel="noopener">WKWebView: Differences from UIWebView browsing engine</a></p>
+<blockquote>
+<p><strong>优点</strong></p>
+<p>多进程，在app的主进程之外执行</p>
+<p>使用更快的Nitro JavaScript引擎</p>
+<p>异步执行处理JavaScript</p>
+<p>消除某些触摸延迟</p>
+<p>支持服务端的身份校验</p>
+<p>支持对错误的自签名安全证书和证书进行身份验证</p>
+</blockquote>
+<p>-</p>
+<blockquote>
+<p><strong>问题</strong></p>
+<p>需要iOS9或更高版本(WKWebView在iOS8引入，但是很多功能，支持比较全面在iOS9以后的版本)</p>
+<p>不支持通过AJAX请求本地存储的文件</p>
+<p>不支持”Accept Cookies”的设置</p>
+<p>不支持”Advanced Cache Settings”(高级缓存设置)</p>
+<p>App退出会清除HTML5的本地存储的数据</p>
+<p>不支持记录WebKit的请求</p>
+<p>不能进行截屏操作</p>
+</blockquote>
+<h2 id="优点-Advantages"><a href="#优点-Advantages" class="headerlink" title="优点(Advantages)"></a>优点(Advantages)</h2><h3 id="多进程，在app的主进程之外执行"><a href="#多进程，在app的主进程之外执行" class="headerlink" title="多进程，在app的主进程之外执行"></a>多进程，在app的主进程之外执行</h3><p>WKWebView为多进程组件，也意味着会从App内存中分离内存到单独的进程(Network Process and Rendring Process)中。当内存超过了系统分配给WKWebView的内存时候，会导致WKWebView浏览器崩溃白屏，但是App不会Crash。(app会收到系统通知，并且尝试去重新加载页面)</p>
+<p>相反的，UIWebView是和app同一个进程，UIWebView加载页面占用的内存被计算为app内存占用的一部分，当app超过了系统分配的内存，则会被操作系统crash。在整个过程中，会经常收到iOS系统的通知用来防止app被系统kill，但是在某些时候，这些通知不够及时，或者根本没有返回通知。</p>
+<h3 id="使用更快的Nitro-JavaScript引擎"><a href="#使用更快的Nitro-JavaScript引擎" class="headerlink" title="使用更快的Nitro JavaScript引擎"></a>使用更快的Nitro JavaScript引擎</h3><p>WKWebView使用和手机Safari浏览器一样的Nitro JavaScript引擎，相比于UIWebView的JavaScript引擎有了非常重要的性能提升</p>
+<h3 id="异步执行处理JavaScript"><a href="#异步执行处理JavaScript" class="headerlink" title="异步执行处理JavaScript"></a>异步执行处理JavaScript</h3><p>WKWebView是异步处理app原生代码与JavaScript之间的通信，因此普遍上执行速度会更快。</p>
+<p>在实践操作过程中，JavaScript API调用原生(native)中方法不会阻塞线程，等待回调函数的执行。(在JavaScript代码会继续向下执行，而回调函数会由native端异步去回调)。举一个例子，之前一个”Save Data”的操作如下:</p>
+<pre><code>// JavaScript code - 笔者注
+// 注释 - 笔者注
+
+var filenameID;
+function getFilenameID() {
+    // 向native端发起请求，获取kioskId，结果返回由callback方式返回 
+    window.kp_requestKioskId(&quot;kp_requestKioskId_callback&quot;);
+}
+// callback回调函数 - 由native端发起 
+function kp_requestKioskId_callback(kioskId) {
+    filenameID = kioskId.split(&quot; &quot;).join(&quot;&quot;);
+}
+// kp_FileAPI_writeToFile方法不会等待kp_requestKioskId_callback回调函数执行，此时filenameID为undefined
+function saveData(fileName, data) {
+    getFilenameID();
+    kp_FileAPI_writeToFile(filenameID + &quot;.xls&quot;, data, &quot;writeFile_callback&quot;);
+}
+</code></pre><p>原先的假定是在’saveData’方法被触发时，在’kp_FileAPI_writeToFile’方法调用前，’getFilenameID’方法会返回filenameID</p>
+<p>但是，在WKWebView中JavaScript和native代码之间的通信是异步的，’kp_FileAPI_writeToFile’方法被调用之前，’getFilenameID’方法还没有完成(回调还没有被执行-笔者注)，导致的结果是在’kp_FileAPI_writeToFile’中filename为undefined。为了正确的得到filename，必须重构之前的代码，在callback中完成。如下：</p>
+<pre><code>var filenameID;
+function getFilenameID() {
+    window.kp_requestKioskId(&quot;kp_requestKioskId_callback&quot;);
+}
+function kp_requestKioskId_callback(kioskId) {
+    filenameID = kioskId.split(&quot; &quot;).join(&quot;&quot;);
+    kp_FileAPI_writeToFile(filenameID + &quot;.xls&quot;, data, &quot;writeFile_callback&quot;);
+}
+function saveData(fileName, data) {
+    getFilenameID();
+}
+</code></pre><h3 id="消除触摸延迟"><a href="#消除触摸延迟" class="headerlink" title="消除触摸延迟"></a>消除触摸延迟</h3><p>UIWebView和WKWebView浏览器组件会将触摸事件解释后发送给app，因此，我们无法提高触摸事件的灵敏度或速度。</p>
+<p>在UIWebView上的任何触摸事件会被<a href="https://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay" target="_blank" rel="noopener">延迟300ms</a>，用以判断用户是单击还是双击。这个机制也是那些基于HTML的web app一直不被用户接受的重要原因。</p>
+<p>在WKWebView中，测试显示，只有在点击很快(&lt;~125ms)的时候才会添加300ms的延迟，iOS将其解释为更可能是双击“点击缩放”手势的一部分，而不是慢点击（&gt;〜125 ms）后。更多细节在<a href="http://developer.telerik.com/featured/300-ms-click-delay-ios-8/" target="_blank" rel="noopener">这里</a></p>
+<p>为了消除所有触摸事件（包括快速点击）的触摸延迟，您可以添加<a href="https://github.com/ftlabs/fastclick" target="_blank" rel="noopener">FastClick</a>或另一个消除此延迟的库到您的内容中。</p>
+<h3 id="支持服务端的身份校验"><a href="#支持服务端的身份校验" class="headerlink" title="支持服务端的身份校验"></a>支持服务端的身份校验</h3><p>与不支持服务器认证校验的UIWebView不同，WKWebView支持服务端校验。实际上，这意味着在使用WKWebView时，可以输入密码保护网站。</p>
+<h3 id="支持对错误的自签名安全证书和证书进行身份验证"><a href="#支持对错误的自签名安全证书和证书进行身份验证" class="headerlink" title="支持对错误的自签名安全证书和证书进行身份验证"></a>支持对错误的自签名安全证书和证书进行身份验证</h3><p>通过“继续”/“取消”弹出窗口，WKWebView允许您绕过安全证书中的错误（例如，使用自签名证书或过期证书时）。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="需要iOS9或更高版本"><a href="#需要iOS9或更高版本" class="headerlink" title="需要iOS9或更高版本"></a>需要iOS9或更高版本</h3><p>我们的WKWebView集成仅适用于运行iOS 9或更高版本的设备。虽然WKWebView是在iOS 8中引入的，但在这些版本中存在重大限制，包括无法访问本地存储的文件，我们无法解决此问题，因此此功能不兼容。</p>
+<p>###不支持AJAX请求到本地存储的文件</p>
+<p>WKWebView不允许XHR请求file：// URI，因为这些URI违反了浏览器引擎的跨源资源共享规则。使用这种类型的请求的项目应该远程托管在服务器上，或使用现有的UIWebView浏览引擎。</p>
+<h3 id="不支持”Accept-Cookies”的设置"><a href="#不支持”Accept-Cookies”的设置" class="headerlink" title="不支持”Accept Cookies”的设置"></a>不支持”Accept Cookies”的设置</h3><p>虽然WKWebView确实支持使用cookies，但并没有公开选择哪些cookies被源代码接受的能力。这意味着在使用WKWebView浏览引擎时不会应用“接受Cookie”设置。</p>
+<p>WKWebView只允许我们访问cookie的名称，而不是附加信息，如创建/过期日期或路径，这使得更难以解决Cookie出现的问题。</p>
+<h3 id="不支持”Advanced-Cache-Settings”-高级缓存设置"><a href="#不支持”Advanced-Cache-Settings”-高级缓存设置" class="headerlink" title="不支持”Advanced Cache Settings”(高级缓存设置)"></a>不支持”Advanced Cache Settings”(高级缓存设置)</h3><p>使用WKWebView浏览引擎时，不会应用“缓存源”和“仅通知服务器重定向事件的浏览器”。</p>
+<h3 id="App退出会清除HTML5的本地存储的数据"><a href="#App退出会清除HTML5的本地存储的数据" class="headerlink" title="App退出会清除HTML5的本地存储的数据"></a>App退出会清除HTML5的本地存储的数据</h3><p>当应用退出并重新启动时，HTML5本地存储将被清除。</p>
+<h3 id="不支持记录WebKit的请求"><a href="#不支持记录WebKit的请求" class="headerlink" title="不支持记录WebKit的请求"></a>不支持记录WebKit的请求</h3><p>WKWebView发出请求并呈现内容，无法直接访问此类请求，并且无法记录这些请求。</p>
+<h3 id="不能进行截屏操作"><a href="#不能进行截屏操作" class="headerlink" title="不能进行截屏操作"></a>不能进行截屏操作</h3><p>尽管我们在测试中没有看到使用Kiosk Pro的JavaScript API进行屏幕捕获的任何问题，但其他iOS开发人员报告说屏幕捕获在WKWebView上随机失败。如果截屏的API是app中的关键操作，建议使用现有的UIWebView浏览引擎。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WKWebView/" rel="tag"># WKWebView</a>
+          
+            <a href="/tags/UIWebView/" rel="tag"># UIWebView</a>
+          
+            <a href="/tags/浏览器之间内核引擎/" rel="tag"># 浏览器之间内核引擎</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/12/blog-5/" rel="next" title="用 CSS 实现元素垂直居中">
+                <i class="fa fa-chevron-left"></i> 用 CSS 实现元素垂直居中
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mdiep</p>
+              <p class="site-description motion-element" itemprop="description">好人生科技有限公司，主职iOS开发，和H5开发的软件开发工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/beyondverage0908" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:beyondaverage0908@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/657a7c77e675" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/657a7c77e675" title="mdiep的简书" target="_blank">mdiep的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://nonomori.farbox.com/" title="Nonomori" target="_blank">Nonomori</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.ibireme.com/" title="ibireme" target="_blank">ibireme</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebView相比于UIWebView浏览器之间内核引擎的区别"><span class="nav-number">1.</span> <span class="nav-text">WKWebView相比于UIWebView浏览器之间内核引擎的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点-Advantages"><span class="nav-number">1.1.</span> <span class="nav-text">优点(Advantages)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程，在app的主进程之外执行"><span class="nav-number">1.1.1.</span> <span class="nav-text">多进程，在app的主进程之外执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用更快的Nitro-JavaScript引擎"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用更快的Nitro JavaScript引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行处理JavaScript"><span class="nav-number">1.1.3.</span> <span class="nav-text">异步执行处理JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消除触摸延迟"><span class="nav-number">1.1.4.</span> <span class="nav-text">消除触摸延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持服务端的身份校验"><span class="nav-number">1.1.5.</span> <span class="nav-text">支持服务端的身份校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持对错误的自签名安全证书和证书进行身份验证"><span class="nav-number">1.1.6.</span> <span class="nav-text">支持对错误的自签名安全证书和证书进行身份验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.2.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要iOS9或更高版本"><span class="nav-number">1.2.1.</span> <span class="nav-text">需要iOS9或更高版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不支持”Accept-Cookies”的设置"><span class="nav-number">1.2.2.</span> <span class="nav-text">不支持”Accept Cookies”的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不支持”Advanced-Cache-Settings”-高级缓存设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">不支持”Advanced Cache Settings”(高级缓存设置)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App退出会清除HTML5的本地存储的数据"><span class="nav-number">1.2.4.</span> <span class="nav-text">App退出会清除HTML5的本地存储的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不支持记录WebKit的请求"><span class="nav-number">1.2.5.</span> <span class="nav-text">不支持记录WebKit的请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不能进行截屏操作"><span class="nav-number">1.2.6.</span> <span class="nav-text">不能进行截屏操作</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mdiep</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'm5m9e42n1FYqbouKwYXAAy2A-gzGzoHsz',
+        appKey: 'UFW7oCdLac4ISbyo2gwfahav',
+        placeholder: 'ヾﾉ≧∀≦)o 来呀！快活呀！~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
