@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-d87c1cceab55f63c45b84cc3672b16d7_hd.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-b14e0cb759c4291bbdf8253b02cf7bae_hd.jpg">
-<meta property="og:updated_time" content="2018-04-16T10:07:43.396Z">
+<meta property="og:updated_time" content="2018-04-16T12:38:03.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对RSA，AES加密的理解补充">
 <meta name="twitter:description" content="1、对称加密对称加密就是加密和解密使用同一个密钥。 用数学公示表示就是： ▲加密：Ｅk(P) = C ▲解密：Ｄk(C) = P 这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。 是不是看起来有点不太容易理解？看下图：  看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密">
@@ -330,8 +330,7 @@
 <p>这下就不用担心密钥被对方窃取或被破解了，私钥由自己保管。</p>
 <p>非对称加密算法核心原理其实就是设计一个数学难题，使得用公钥和明文推导密文很容易，但根据公钥、明文和密文推导私钥极其难。</p>
 <p><strong><u>RSA就属于非对称加密，非对称加密还有Elgamal、背包算法、Rabin、D-H、ECC（椭圆曲线加密算法）以及国家商用密码SM2算法。</u></strong></p>
-<p>3、AES和RSA</p>
-<p>AES和RSA都很安全，至少在目前的计算机体系结构下，没有任何有效的攻击方式。量子计算机时代，RSA有一定的破绽，因为利用shro’s algorithm，量子计算机穷举计算质因子速度可以提高N个数量级，能够在有限的时间内破解RSA密钥。AES256至少目前并没有什么明显的漏洞。</p>
+<h2 id="3、AES和RSA"><a href="#3、AES和RSA" class="headerlink" title="3、AES和RSA"></a>3、AES和RSA</h2><p>AES和RSA都很安全，至少在目前的计算机体系结构下，没有任何有效的攻击方式。量子计算机时代，RSA有一定的破绽，因为利用shro’s algorithm，量子计算机穷举计算质因子速度可以提高N个数量级，能够在有限的时间内破解RSA密钥。AES256至少目前并没有什么明显的漏洞。</p>
 <p>AES作为对称加密技术，加密速度很快。现在高端一点的CPU都带有AES-NI指令，可以极快的完成加密和解密。</p>
 <p>但是AES作为对称加密技术，如何安全的分发密钥是一个难题。通过任何方式传递密钥都有泄密的风险。当然，目前我国高大上的量子通信技术或许能很好的解决这个问题。</p>
 <p><strong>RSA作为非对称加密技术的代表</strong>，加解密的速度其实相当慢，只能对小块的数据进行加解密。但是其非对称的特点，满足公钥可以随处分发，只有公钥能解密私钥加密的数据，只有私钥能解密公钥加密的数据。所以很适合用来进行密钥分发和身份验证，这两个应用场景刚好相反。</p>
@@ -352,6 +351,8 @@
 <li><p>现在大部分的加密解密都是同时应用RSA和AES，发挥各自的优势，使用RSA进行密钥分发、协商，使用AES进行业务数据的加解密。</p>
 </li>
 </ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.zhihu.com/question/20874499" target="_blank" rel="noopener">RSA 1024和AES 256，这两种加密算法理论上哪种更安全？</a></p>
+<p><a href="https://www.zhihu.com/question/28617156" target="_blank" rel="noopener">HTTPS 加密了什么内容</a></p>
 
       
     </div>
@@ -569,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、对称加密"><span class="nav-number">1.</span> <span class="nav-text">1、对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、非对称加密"><span class="nav-number">2.</span> <span class="nav-text">2、非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关趣闻轶事"><span class="nav-number">3.</span> <span class="nav-text">相关趣闻轶事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、对称加密"><span class="nav-number">1.</span> <span class="nav-text">1、对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、非对称加密"><span class="nav-number">2.</span> <span class="nav-text">2、非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、AES和RSA"><span class="nav-number">3.</span> <span class="nav-text">3、AES和RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关趣闻轶事"><span class="nav-number">4.</span> <span class="nav-text">相关趣闻轶事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
