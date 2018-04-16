@@ -320,14 +320,14 @@
 <p>▲解密：Ｄk(C) = P</p>
 <p>这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。</p>
 <p>是不是看起来有点不太容易理解？看下图：</p>
-<p><img src="https://pic2.zhimg.com/80/v2-d87c1cceab55f63c45b84cc3672b16d7_hd.jpg" alt="AES256对称加密示意图"></p>
+<p><img src="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/AES-demo.jpg" alt="AES256对称加密示意图"></p>
 <p>看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密码本，只看到一堆没有意义的数字，这就是对称算法的原理。</p>
 <p><strong><u>AES就属于对称加密，常见的对称加密方法还有DES、3DES、Blowfish、RC2以及国密的SM4。</u></strong></p>
 <h2 id="2、非对称加密"><a href="#2、非对称加密" class="headerlink" title="2、非对称加密"></a>2、非对称加密</h2><p>对称加密快而且方便，但是有个缺点——密钥容易被偷或被破解。</p>
 <p>非对称加密就可以很好的避免这个问题。非对称算法把密钥分成两个，一个自己持有叫私钥，另一个发给对方，还可以公开，叫公钥，用公钥加密的数据只能用私钥解开。</p>
 <p>▲加密： E公钥(P) = C</p>
 <p>▲解密:：D私钥(C) = P</p>
-<p><img src="https://pic2.zhimg.com/80/v2-b14e0cb759c4291bbdf8253b02cf7bae_hd.jpg" alt="RSA1024示意图"></p>
+<p><img src="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/RSA-demo.jpg" alt="RSA1024示意图"></p>
 <p>这下就不用担心密钥被对方窃取或被破解了，私钥由自己保管。</p>
 <p>非对称加密算法核心原理其实就是设计一个数学难题，使得用公钥和明文推导密文很容易，但根据公钥、明文和密文推导私钥极其难。</p>
 <p><strong><u>RSA就属于非对称加密，非对称加密还有Elgamal、背包算法、Rabin、D-H、ECC（椭圆曲线加密算法）以及国家商用密码SM2算法。</u></strong></p>
