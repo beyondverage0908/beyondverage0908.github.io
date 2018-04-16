@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="WKWebView,WKWebView无法调用delegate,WKWebView无法释放," />
+  <meta name="keywords" content="加密," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
-<meta name="keywords" content="WKWebView,WKWebView无法调用delegate,WKWebView无法释放">
+<meta name="description" content="1、对称加密对称加密就是加密和解密使用同一个密钥。 用数学公示表示就是： ▲加密：Ｅk(P) = C ▲解密：Ｄk(C) = P 这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。 是不是看起来有点不太容易理解？看下图：  看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密">
+<meta name="keywords" content="加密">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于使用WKWebView时，ViewController不调用dealloc方法的记录">
-<meta property="og:url" content="http://yoursite.com/2018/04/12/blog-2/index.html">
+<meta property="og:title" content="对RSA，AES加密的理解补充">
+<meta property="og:url" content="http://yoursite.com/2018/04/16/blog-2018-4-16/index.html">
 <meta property="og:site_name" content="Mdiep">
-<meta property="og:description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
+<meta property="og:description" content="1、对称加密对称加密就是加密和解密使用同一个密钥。 用数学公示表示就是： ▲加密：Ｅk(P) = C ▲解密：Ｄk(C) = P 这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。 是不是看起来有点不太容易理解？看下图：  看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-04-16T02:03:53.474Z">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-d87c1cceab55f63c45b84cc3672b16d7_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-b14e0cb759c4291bbdf8253b02cf7bae_hd.jpg">
+<meta property="og:updated_time" content="2018-04-16T10:07:43.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于使用WKWebView时，ViewController不调用dealloc方法的记录">
-<meta name="twitter:description" content="在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用WKWebView。 很正常的在ViewDidLoad中初始化，设置WKWebView - (void)setupWKWebView {     WKWebViewConfiguration *configuration = [[WKWeb">
+<meta name="twitter:title" content="对RSA，AES加密的理解补充">
+<meta name="twitter:description" content="1、对称加密对称加密就是加密和解密使用同一个密钥。 用数学公示表示就是： ▲加密：Ｅk(P) = C ▲解密：Ｄk(C) = P 这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。 是不是看起来有点不太容易理解？看下图：  看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-d87c1cceab55f63c45b84cc3672b16d7_hd.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/12/blog-2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/16/blog-2018-4-16/"/>
 
 
 
 
 
-  <title>关于使用WKWebView时，ViewController不调用dealloc方法的记录 | Mdiep</title>
+  <title>对RSA，AES加密的理解补充 | Mdiep</title>
   
 
 
@@ -233,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/blog-2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/blog-2018-4-16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mdiep">
@@ -250,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于使用WKWebView时，ViewController不调用dealloc方法的记录</h1>
+          <h1 class="post-title" itemprop="name headline">对RSA，AES加密的理解补充</h1>
         
 
         <div class="post-meta">
@@ -262,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T09:44:02+08:00">
-                2018-04-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T18:06:19+08:00">
+                2018-04-16
               </time>
             
 
@@ -273,39 +276,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/WebView/" itemprop="url" rel="index">
-                    <span itemprop="name">WebView</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -314,8 +284,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/12/blog-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/12/blog-2/" itemprop="commentCount"></span>
+                <a href="/2018/04/16/blog-2018-4-16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/16/blog-2018-4-16/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,32 +313,45 @@
       
 
       
-        <p>在当前的项目中，会嵌入很多的H5页面，所以就考虑封装一个Controller，用于完全的显示H5页面。基于当前项目对iOS版本的支持在iOS8.0之上，所以选用<code>WKWebView</code>。</p>
-<p>很正常的在<code>ViewDidLoad</code>中初始化，设置<code>WKWebView</code></p>
-<pre><code>- (void)setupWKWebView {
-    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *controller = [[WKUserContentController alloc] init];
-    configuration.userContentController = controller;
-    self.contentWKWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, SCREENW, SCREENH - NAVIAGTION_HEIGHT)
-                                           configuration:configuration];
-    self.contentWKWebView.UIDelegate = self;
-    self.contentWKWebView.navigationDelegate = self;
-    self.contentWKWebView.allowsBackForwardNavigationGestures = YES;
-    // 监听进度条
-    [self.contentWKWebView addObserver:self
-                        forKeyPath:@&quot;estimatedProgress&quot;
-                           options:NSKeyValueObservingOptionNew context:nil];
-
-    // 注册JS交互对象
-    WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
-    [controller addScriptMessageHandler:self name:@&quot;vhswebview&quot;];
-}
-</code></pre><p>然后加载H5页面，一切看着都很正常，但是经过多次测试，发现对应的<code>- (void)dealloc;</code>一次都没有调用，所以必然出现了内存泄漏。检查该<code>Controller</code>代码，发现诸如block的循环引用，代理等地方都没有问题。</p>
-<p>最后猜测是否是注册JS交互对象的时候，将对象本身<code>self</code>传给<code>MessageHandler</code>导致的。后面查询了一些资料，发现在Apple的development中提到了需要移除JS交互对象<code>removeScriptMessageHandlerForName</code>。</p>
-<p>所以将页面关闭<code>WKWebView</code>的<code>Controller</code>的时候，就去移除JS交互对象</p>
-<pre><code>WKUserContentController *controller = self.contentWKWebView.configuration.userContentController;
-[controller removeScriptMessageHandlerForName:@&quot;vhswebview&quot;];
-</code></pre><p>最后，就可以在关闭页面后调用<code>dealloc</code>了。</p>
+        <h2 id="1、对称加密"><a href="#1、对称加密" class="headerlink" title="1、对称加密"></a>1、对称加密</h2><p>对称加密就是加密和解密使用同一个密钥。</p>
+<p>用数学公示表示就是：</p>
+<p>▲加密：Ｅk(P) = C</p>
+<p>▲解密：Ｄk(C) = P</p>
+<p>这里E表示加密算法，D表示解密算法，P表示明文，C表示密文。</p>
+<p>是不是看起来有点不太容易理解？看下图：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-d87c1cceab55f63c45b84cc3672b16d7_hd.jpg" alt="AES256对称加密"></p>
+<p>看过间谍局的知友们一定知道电台和密码本的功能。潜伏里面孙红雷通过电台收听到一堆数字，然后拿出密码本比对，找到数字对应的汉字，就明白上级传达的指令。而军统的监听台没有密码本，只看到一堆没有意义的数字，这就是对称算法的原理。</p>
+<p><strong><u>AES就属于对称加密，常见的对称加密方法还有DES、3DES、Blowfish、RC2以及国密的SM4。</u></strong></p>
+<h2 id="2、非对称加密"><a href="#2、非对称加密" class="headerlink" title="2、非对称加密"></a>2、非对称加密</h2><p>对称加密快而且方便，但是有个缺点——密钥容易被偷或被破解。</p>
+<p>非对称加密就可以很好的避免这个问题。非对称算法把密钥分成两个，一个自己持有叫私钥，另一个发给对方，还可以公开，叫公钥，用公钥加密的数据只能用私钥解开。</p>
+<p>▲加密： E公钥(P) = C</p>
+<p>▲解密:：D私钥(C) = P</p>
+<p><img src="https://pic2.zhimg.com/80/v2-b14e0cb759c4291bbdf8253b02cf7bae_hd.jpg" alt=""></p>
+<p>这下就不用担心密钥被对方窃取或被破解了，私钥由自己保管。</p>
+<p>非对称加密算法核心原理其实就是设计一个数学难题，使得用公钥和明文推导密文很容易，但根据公钥、明文和密文推导私钥极其难。</p>
+<p><strong><u>RSA就属于非对称加密，非对称加密还有Elgamal、背包算法、Rabin、D-H、ECC（椭圆曲线加密算法）以及国家商用密码SM2算法。</u></strong></p>
+<p>3、AES和RSA</p>
+<p>AES和RSA都很安全，至少在目前的计算机体系结构下，没有任何有效的攻击方式。量子计算机时代，RSA有一定的破绽，因为利用shro’s algorithm，量子计算机穷举计算质因子速度可以提高N个数量级，能够在有限的时间内破解RSA密钥。AES256至少目前并没有什么明显的漏洞。</p>
+<p>AES作为对称加密技术，加密速度很快。现在高端一点的CPU都带有AES-NI指令，可以极快的完成加密和解密。</p>
+<p>但是AES作为对称加密技术，如何安全的分发密钥是一个难题。通过任何方式传递密钥都有泄密的风险。当然，目前我国高大上的量子通信技术或许能很好的解决这个问题。</p>
+<p><strong>RSA作为非对称加密技术的代表</strong>，加解密的速度其实相当慢，只能对小块的数据进行加解密。但是其非对称的特点，满足公钥可以随处分发，只有公钥能解密私钥加密的数据，只有私钥能解密公钥加密的数据。所以很适合用来进行密钥分发和身份验证，这两个应用场景刚好相反。</p>
+<p>1）用于对称秘钥分发的场景，其他人用公钥加密对称的秘钥，那么只有授权人才持有私钥，因此才能解密获得对应的秘钥，解决了AES密钥分发的难题；</p>
+<p>2）对于身份验证的场景，授权人用私钥加密一段指令，其他人用公钥解密对应的数据，验证对应的指令与之前约定的某些特征一致，如果一致，那么可以确认这个指令就是授权人发出的。</p>
+<h2 id="相关趣闻轶事"><a href="#相关趣闻轶事" class="headerlink" title="相关趣闻轶事"></a>相关趣闻轶事</h2><blockquote>
+<p>RSA除了是一个伟大的发明，被免费开放给所有互联网用户使用。它的发明者还以此成立了一家名为RSA Security的网络安全公司，这家公司最后被EMC高价收购。这是德艺双馨的伟大证明， 是“又红又专”的典范。</p>
+<p>RSA的算法是以三个发明者的名字命名的，三位都是成功的数学家，科学家和企业家，其中的排名第一Ron Rivest，有非常多的杰出贡献。</p>
+</blockquote>
+<p><strong>RSA是整个互联网数据安全的基础，与光纤处于同样基础和重要的方式。大部分的加密和解密的应用都是同时应用RSA和AES。</strong>作为新一代的Http协议的升级版——Https就是在Http的基础添加了以RSA和AES为基础的SSL/TLS加密层。用以保护网上信息传递的安全。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>破解加密的难度除了跟加密方法有关，还跟密钥长度以及加密模式有很大的关系，就拿AES来说，有AES128和AES256（代表<strong>密钥长度</strong>），显然AES256的安全性能比AES128更高，而AES又要四种模式：ECB、CBC、CFB、OFB（代表<strong>加密模式</strong>）。</p>
+</li>
+<li><p>RSA1024是属于非对称加密，是基于大整数因式分解难度，也就是两个质数相乘很容易，但是找一个大数的质因子非常困难。量子计算机时代，RSA有一定的风险，具体可以参考：超链接</p>
+</li>
+<li><p>AES256目前没有明显的漏洞，唯一的问题就是如何安全的分发密钥。</p>
+</li>
+<li><p>现在大部分的加密解密都是同时应用RSA和AES，发挥各自的优势，使用RSA进行密钥分发、协商，使用AES进行业务数据的加解密。</p>
+</li>
+</ol>
 
       
     </div>
@@ -386,11 +369,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/WKWebView/" rel="tag"># WKWebView</a>
-          
-            <a href="/tags/WKWebView无法调用delegate/" rel="tag"># WKWebView无法调用delegate</a>
-          
-            <a href="/tags/WKWebView无法释放/" rel="tag"># WKWebView无法释放</a>
+            <a href="/tags/加密/" rel="tag"># 加密</a>
           
         </div>
       
@@ -403,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/11/blog-1/" rel="next" title="结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理">
-                <i class="fa fa-chevron-left"></i> 结合RSA，AES128，MD5---移动端与服务端在通信层的加密处理
+              <a href="/2018/04/15/blog-6/" rel="next" title="WKWebView相比于UIWebView浏览器之间内核引擎的区别">
+                <i class="fa fa-chevron-left"></i> WKWebView相比于UIWebView浏览器之间内核引擎的区别
               </a>
             
           </div>
@@ -412,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/12/blog-3/" rel="prev" title="Method Swizzling的实践 - 实现页面的统计功能">
-                Method Swizzling的实践 - 实现页面的统计功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -470,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -575,6 +559,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、对称加密"><span class="nav-number">1.</span> <span class="nav-text">1、对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、非对称加密"><span class="nav-number">2.</span> <span class="nav-text">2、非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关趣闻轶事"><span class="nav-number">3.</span> <span class="nav-text">相关趣闻轶事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
