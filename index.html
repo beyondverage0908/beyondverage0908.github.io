@@ -338,25 +338,27 @@
           
             <h1 id="Vue组件-父组件传值给子组件"><a href="#Vue组件-父组件传值给子组件" class="headerlink" title="Vue组件-父组件传值给子组件"></a>Vue组件-父组件传值给子组件</h1><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即</p>
 <ol>
-<li>组件的传值 - 父组件向子组件中传值</li>
+<li><a href="https://beyondverage0908.github.io/2018/05/08/blog-2018-05-08/" target="_blank" rel="noopener">组件的传值 - 父组件向子组件中传值</a></li>
 <li>事件回馈 - 子组件向父组件发送消息，父组件监听消息</li>
 <li>分发内容 </li>
 </ol>
-<p>所以将用三篇博客分别进行讲解以上三种情况</p>
-<h2 id="Vue的设计者"><a href="#Vue的设计者" class="headerlink" title="Vue的设计者"></a>Vue的设计者</h2><p>Vue的设计者，对组件和父组件之间的关系流上做了阐述，即<strong>单向数据流图：</strong>父组件向子组件传递数据，子组件回馈事件</p>
+<p><a href="https://gitee.com/mdiep/LearnVue/blob/master/Html/component.html" target="_blank" rel="noopener">整个博客使用的源代码-请点击</a></p>
+<p>所以将用三篇博客分别进行介绍以上三种情况和使用</p>
+<h2 id="Vue的设计者对组件的理解"><a href="#Vue的设计者对组件的理解" class="headerlink" title="Vue的设计者对组件的理解"></a>Vue的设计者对组件的理解</h2><p>Vue的设计者，对组件和父组件之间的关系流上做了阐述，即<strong>单向数据流图：</strong>父组件向子组件传递数据，子组件回馈事件</p>
 <blockquote>
 <p>组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模板中使用了组件 B。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。</p>
 <p>在 Vue 中，父子组件的关系可以总结为 props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。看看它们是怎么工作的。</p>
 </blockquote>
-<p><img src="https://cn.vuejs.org/images/props-events.png" alt="属性下传，事件上传"></p>
-<h2 id="父组件挂载的实例"><a href="#父组件挂载的实例" class="headerlink" title="父组件挂载的实例"></a>父组件挂载的实例</h2><p>模版：</p>
+<p><img src="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/props-events.png" alt="属性下传，事件上传"></p>
+<h2 id="父组件挂载的实例"><a href="#父组件挂载的实例" class="headerlink" title="父组件挂载的实例"></a>父组件挂载的实例</h2><p>上文提到的三篇文章，都使用一个父组件挂载对象，内容比较长(可以选择不看，直接看props的使用)，感兴趣可以到git上去看<a href="https://gitee.com/mdiep/LearnVue/blob/master/Html/component.html" target="_blank" rel="noopener">源代码</a></p>
+<p>模版：</p>
 <pre><code>&lt;body&gt;
     &lt;div id=&quot;el-component-id&quot;&gt;&lt;/div&gt;
 &lt;body
 </code></pre><p>Vue实例：</p>
 <pre><code>var vm = new Vue({
     el: &quot;#el-component-id&quot;,
-        data: {
+    data: {
         welcome: &quot;welcome to Vue&quot;,
         parentMessage: &quot;this is parent message&quot;,
         iMessage: &quot;&quot;,
@@ -366,10 +368,62 @@
             to: &quot;江西&quot;,
             purpose: &quot;喝一杯牛奶&quot;
         },
-        persons: 10
-    }    
+        persons: 10,
+        sumOfTotal: 0,
+        nativeSumOfTotal: 0,
+        food: &quot;牛肉&quot;,
+        languages: [&quot;英语&quot;, &quot;中文&quot;, &quot;希腊语&quot;, &quot;法语&quot;, &quot;俄罗斯语&quot;],
+        dynamicComponent: &quot;AppHeader&quot;
+    },
+    methods: {
+        incrementWithTotal: function() {
+            this.sumOfTotal = this.sumOfTotal + 1;
+        },
+        nativeDoThing: function() {
+            this.nativeSumOfTotal += 1;
+        },
+        changeCurrentComponent: function() {
+            let components = [&quot;AppHeader&quot;, &quot;AppFooter&quot;, &quot;AppMain&quot;];
+            let idx = components.indexOf(this.dynamicComponent);
+            if (idx == 2 || idx == -1) {
+                idx = 0;
+            } else {
+                ++idx;
+            }
+            this.dynamicComponent = components[idx];
+        }
+    },
+    components: {
+        AppHeader: {
+            props: [&quot;initialText&quot;],
+            template: &quot;&lt;div&gt;&lt;strong&gt;{{title}}&lt;/strong&gt;&lt;/div&gt;&quot;,
+            data: function() {
+                return {
+                    title: this.initialText
+                }
+            }
+        },
+        AppFooter: {
+            props: [&quot;initialText&quot;],
+            template: &quot;&lt;div&gt;&lt;sub&gt;{{footerTitle}}&lt;/sub&gt;&lt;/div&gt;&quot;,
+            data: function() {
+                return {
+                    footerTitle: this.initialText
+                }
+            }
+        },
+        AppMain: {
+            props: [&quot;initialText&quot;],
+            template: &quot;&lt;div style=&apos;color:blue;&apos;&gt;{{mainContent}}&lt;/div&gt;&quot;,
+            data: function() {
+                return {
+                    mainContent: this.initialText
+                }
+            }
+        }
+    }
 });
-</code></pre><h2 id="props传递单个参数"><a href="#props传递单个参数" class="headerlink" title="props传递单个参数"></a>props传递单个参数</h2><p>组件定义：</p>
+</code></pre><h2 id="1-props传递单个参数"><a href="#1-props传递单个参数" class="headerlink" title="1. props传递单个参数"></a>1. props传递单个参数</h2><p>组件定义：</p>
 <pre><code>// 使用props数组的形式进行传递参数
 Vue.component(&quot;component-span-child-1&quot;, {
     props: [&quot;message&quot;],
@@ -389,7 +443,7 @@ Vue.component(&quot;component-span-child-1&quot;, {
     &lt;input v-model=&quot;iMessage&quot; placeholder=&quot;请输入值&quot;/&gt;
     &lt;component-span-child-1 :message=&quot;iMessage&quot;&gt;&lt;/component-span-child-1&gt;
 &lt;/div&gt;
-</code></pre><h2 id="props传递多个参数"><a href="#props传递多个参数" class="headerlink" title="props传递多个参数"></a>props传递多个参数</h2><p>组件定义：</p>
+</code></pre><h2 id="2-props传递多个参数"><a href="#2-props传递多个参数" class="headerlink" title="2. props传递多个参数"></a>2. props传递多个参数</h2><p>组件定义：</p>
 <pre><code>Vue.component(&quot;component-span-child-2&quot;, {
     props: [&quot;name&quot;, &quot;from&quot;, &quot;to&quot;, &quot;purpose&quot;],
     template: &quot;&lt;div&gt;&lt;span&gt;{{name}}从{{from}}到{{to}}，{{purpose}}&lt;/span&gt;&lt;/div&gt;&quot;
@@ -402,7 +456,7 @@ Vue.component(&quot;component-span-child-1&quot;, {
     // 父组件实例对象属性传值
     &lt;component-span-child-2 :name=&quot;person.name&quot; :from=&quot;person.from&quot; :to=&quot;person.to&quot; :purpose=&quot;person.purpose&quot;&gt;&lt;/component-span-child-2&gt;
 &lt;/div&gt;
-</code></pre><h2 id="使用props对象传递参数，并进行校验"><a href="#使用props对象传递参数，并进行校验" class="headerlink" title="使用props对象传递参数，并进行校验"></a>使用props对象传递参数，并进行校验</h2><p>组件定义：</p>
+</code></pre><h2 id="3-使用props对象高级传参，并对参数进行校验"><a href="#3-使用props对象高级传参，并对参数进行校验" class="headerlink" title="3. 使用props对象高级传参，并对参数进行校验"></a>3. 使用props对象高级传参，并对参数进行校验</h2><p>组件定义：</p>
 <p>可以校验传递进来的属性，例如：1. 校验类型 2. 是否必须传递 3. 提供默认值 4. 通过函数校验，如校验Number类型是否大于某个值</p>
 <pre><code>Vue.component(&quot;component-span-child-3&quot;, {
     props: {
@@ -433,7 +487,13 @@ Vue.component(&quot;component-span-child-1&quot;, {
     &lt;h4&gt;组件三-使用props对象传递参数，和校验&lt;/h4&gt;
     &lt;component-span-child-3 name=&quot;小狗&quot; :persons=&quot;persons&quot; location=&quot;讲述郾城&quot; action=&quot;去淘金啊&quot;&gt;&lt;/component-span-child-3&gt;
 &lt;/div&gt;
-</code></pre>
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>父组件向子组件主要是通过props关键字，主要使用情况可以分为上面描述的三种。props的封装可以是一个数组，也可以是对象。</p>
+<ol>
+<li>当使用数组封装props的时候，只是简单将父组件的参数传递给子组件使用，此处的参数可以是对象，字符串，number类型的数据</li>
+<li>当使用对象封装props的时候，可以更加高级的校验参数，比如参数类型，默认值，参数大小等一系列校验。当不符合时候，可以看到Vue再控制台给出错误警告</li>
+</ol>
+<p>熟练掌握父组件向子组件传递参数的方法，可以对Vue的关键部分更快的理解。</p>
+
           
         
       
