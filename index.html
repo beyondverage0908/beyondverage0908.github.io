@@ -233,6 +233,295 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/blog-2018-05-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mdiep">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mdiep">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/blog-2018-05-11/" itemprop="url">Vue组件-事件反馈 - 子组件向父组件发送消息，父组件监听消息</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T22:47:49+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/11/blog-2018-05-11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/11/blog-2018-05-11/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即</p>
+<ol>
+<li><a href="https://beyondverage0908.github.io/2018/05/08/blog-2018-05-08/" target="_blank" rel="noopener">组件的传值 - 父组件向子组件中传值</a></li>
+<li>事件回馈 - 子组件向父组件发送消息，父组件监听消息</li>
+<li>分发内容 </li>
+</ol>
+<p><a href="https://gitee.com/mdiep/LearnVue/blob/master/Html/component.html" target="_blank" rel="noopener">整个博客使用的源代码-请点击</a></p>
+<p>所以将用三篇博客分别进行介绍以上三种情况和使用</p>
+<h2 id="消息监听，消息发送"><a href="#消息监听，消息发送" class="headerlink" title="消息监听，消息发送"></a>消息监听，消息发送</h2><p>在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息会提供一个”消息名称”，订阅者可以通过”消息名称”，订阅特定的消息。一定订阅者订阅了消息，则只要发出消息，订阅者就会被触发。</p>
+<p><img src="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/message_center_pattern.jpg" alt="消息中心模型"></p>
+<p>而在Vue中，通过<code>v-on</code>去订阅一个消息，通过<code>emit</code>发出一个消息。</p>
+<p>这两个特有的模式是<code>v-on:message-name=&quot;someMethod&quot;</code>订阅，<code>this.$emit(&quot;message-name&quot;)</code>发送一个消息。此时<code>someMethod</code>会被触发调用。</p>
+<h2 id="具体的实例"><a href="#具体的实例" class="headerlink" title="具体的实例"></a>具体的实例</h2><p>父组件和子组件的事件响应中，主要分为四种情况</p>
+<ol>
+<li>“v-on”/“@”绑定事件(@是对v-on的缩写)</li>
+<li>绑定原生事件</li>
+<li>.sync同步父组件和子组件之间的props</li>
+<li>兄弟组件进行通信</li>
+</ol>
+<h3 id="“v-on”或”-”绑定事件"><a href="#“v-on”或”-”绑定事件" class="headerlink" title="“v-on”或”@”绑定事件"></a>“v-on”或”@”绑定事件</h3><p>父组件中模版的定义</p>
+<pre><code>&lt;div&gt;
+    &lt;h4&gt;组件四-&quot;v-on&quot;绑定事件&lt;/h4&gt;
+    &lt;span&gt;{{sumOfTotal}}&lt;/span&gt;
+    &lt;br /&gt;
+    &lt;!--&apos;@&apos;是&apos;v-on:&apos;监听器的简写--&gt;
+    &lt;component-span-child-4 v-on:increment-total=&quot;incrementWithTotal&quot;&gt;&lt;/component-span-child-4&gt;
+    &lt;component-span-child-4 @increment-total=&quot;incrementWithTotal&quot;&gt;&lt;/component-span-child-4&gt;
+    &lt;component-span-child-4 @increment-total=&quot;incrementWithTotal&quot;&gt;&lt;/component-span-child-4&gt;
+&lt;/div&gt;
+</code></pre><p>子组件的定义</p>
+<pre><code>Vue.component(&quot;component-span-child-4&quot;, {
+    template: &quot;&lt;button v-on:click=&apos;incrementOfButtonCounter&apos;&gt;{{counter}}&lt;/button&gt;&quot;,
+    data: function() {
+        return {
+            counter: 0
+        }
+    },
+    methods: {
+        incrementOfButtonCounter: function() {
+            this.counter = this.counter + 1;
+            // post a notification of increment counter
+            // &apos;increment-total&apos; 相当于一个通知名称，在父组件中，会检测一个同名的通知名称
+            this.$emit(&quot;increment-total&quot;);
+        }
+    }
+})
+</code></pre><blockquote>
+<p>子组件在点击事件触发的时候，会发送一个消息名称为<code>&quot;increment-total&quot;</code>的消息，而在父组件中，订阅了这个名称的消息。所以父组件可以响应子组件的通知</p>
+</blockquote>
+<h3 id="绑定原生事件"><a href="#绑定原生事件" class="headerlink" title="绑定原生事件"></a>绑定原生事件</h3><p>父组件中模版的定义</p>
+<pre><code>&lt;div&gt;
+    &lt;h4&gt;组件五-绑定原生事件&lt;/h4&gt;
+    &lt;span&gt;{{nativeSumOfTotal}}&lt;/span&gt;
+    &lt;br /&gt;
+    &lt;component-span-child-5 v-on:click.native=&quot;nativeDoThing&quot;&gt;&lt;/component-span-child-5&gt;
+&lt;/div&gt;
+</code></pre><p>子组件的定义</p>
+<pre><code>Vue.component(&quot;component-span-child-5&quot;, {
+    template: &quot;&lt;button&gt;检测原生事件-点击&lt;/button&gt;&quot;
+})
+</code></pre><blockquote>
+<p>通过<code>v-on:click.native=&quot;nativeDoThing&quot;</code>订阅原生的事件。这里没有<code>emit</code>关键字，可以理解为这个消息是原生组件发送出的，但是订阅还是通过<code>v-on</code></p>
+</blockquote>
+<h3 id="sync同步父组件和子组件之间的props"><a href="#sync同步父组件和子组件之间的props" class="headerlink" title=".sync同步父组件和子组件之间的props"></a>.sync同步父组件和子组件之间的props</h3><blockquote>
+<p><strong>在一些情况下，我们可能会需要对一个 prop 进行『双向绑定』。当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定的值。这很方便，但也会导致问题，因为它破坏了『单向数据流』的假设。</strong></p>
+</blockquote>
+<p>父组件中模版的定义</p>
+<pre><code>&lt;div&gt;
+    &lt;h4&gt;组件六-.sync同步父组件和子组件之间的props&lt;/h4&gt;
+    父组件中的值: {{food}}
+    &lt;component-span-child-6 :food.sync=food&gt;&lt;/component-span-child-6&gt;
+    &lt;component-span-child-6 v-bind:food.sync=food&gt;&lt;/component-span-child-6&gt;
+    &lt;!--扩展之后的模版--&gt;
+    &lt;component-span-child-6 v-bind:food=food v-on:update:food=&quot;val =&gt; food = val&quot;&gt;&lt;/component-span-child-6&gt;
+&lt;/div&gt;
+</code></pre><p>子组件中的定义</p>
+<pre><code>Vue.component(&quot;component-span-child-6&quot;, {
+    props: [&quot;food&quot;],
+    template: &quot;&lt;div&gt;{{selectedFood}}&lt;button v-on:click=&apos;changeSelectedFood&apos;&gt;点击选择其他食物&lt;/button&gt;&lt;/div&gt;&quot;,
+    data: function() {
+        return {
+            selectedFood: this.food,
+            foods: [&quot;米饭&quot;, &quot;水果&quot;, &quot;青菜&quot;, &quot;沙拉&quot;]            
+        }
+    },
+    methods: {
+        changeSelectedFood: function() {
+            var idx = this.foods.indexOf(this.selectedFood);
+            if (idx == -1 || idx == this.foods.length - 1) {
+                idx = 0;
+            } else {
+                idx += 1;
+            }
+            this.selectedFood = this.foods[idx];
+            this.$emit(&apos;update:food&apos;, this.selectedFood);
+        }
+    }
+})
+</code></pre><blockquote>
+<p>通过父组件中国呢三种写法(功能都是一样的，只是由上而下，将模版扩展开写，以窥探<code>.sync</code>的作用)，其实<code>.sync</code>其实会扩展出一个<code>v-on:update:food</code>订阅消息，并且在收到消息，进行了对原值的修改。<br>而在子组件中，依旧通过<code>this.$emit(&#39;update:food&#39;)</code>发送一个消息出来</p>
+</blockquote>
+<p>这个就是<code>.sync</code>真正做了什么。</p>
+<h3 id="兄弟组件进行通信"><a href="#兄弟组件进行通信" class="headerlink" title="兄弟组件进行通信"></a>兄弟组件进行通信</h3><p>两个不是父子组件的组件如何通信，可以定一个中间总线(中介的意思)，通过中间中间总线订阅消息，中间总线发送消息，完成两个组件之间的通信。如下</p>
+<p>父组件模版的定义</p>
+<pre><code>&lt;div&gt;
+    &lt;h4&gt;组件七-兄弟组件进行通信&lt;/h4&gt;
+    &lt;component-span-child-7 component-name=&quot;组件7&quot;&gt;&lt;/component-span-child-7&gt;
+    &lt;component-span-child-8 component-name=&quot;组件8&quot;&gt;&lt;/component-span-child-8&gt;
+&lt;/div&gt;
+</code></pre><p>子组件的定义</p>
+<pre><code>var bus = new Vue();
+Vue.component(&quot;component-span-child-7&quot;, {
+    props: [&quot;componentName&quot;],
+    template: &quot;&lt;div&gt;&lt;span&gt;{{componentName}}&lt;/span&gt;:&lt;span&gt;{{counter}}&lt;/span&gt;&lt;/div&gt;&quot;,
+    data: function() {
+        return {
+            counter: 0
+        }
+    },
+    mounted: function() {
+        // 此处在monuted阶段监听&apos;notificationFromPartner&apos;,需要用bind方法绑定当前的this，否则回调function中的this则是bus实例，而不是当前Vue的实例
+        bus.$on(&quot;notificationFromPartner&quot;, function() {
+            this.counter += 1;
+        }.bind(this));
+    }
+})
+Vue.component(&quot;component-span-child-8&quot;, {
+    props: [&quot;componentName&quot;],
+    template: &quot;&lt;button v-on:click=&apos;componentClickPushMessage&apos;&gt;{{componentName}}&lt;/button&gt;&quot;,
+    methods: {
+        componentClickPushMessage: function() {
+            bus.$emit(&quot;notificationFromPartner&quot;);
+        }
+    }
+})
+</code></pre><p>组件7在装载<code>mounted</code>后，通过<code>bus.$on(&quot;notificationFromPartner&quot;, callbackFunction)</code>订阅了<code>notificationFromPartner</code>消息，而在组件8中，通过<code>bus.$emit(&quot;notificationFromPartner&quot;);</code>发送出这个消息。则订阅者就可以响应消息。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在学习Vue中，组件作为十分重要的一个组成部分，对组件的通信的理解也十分重要。对于组件间的事件反馈，应该先理解消息中心的设计模式，则能更快的理解其中的原理。则不用纠结一些语法特性比较奇怪。不用纠结为什么v-on要和emit匹配、为什么只需要v-on就可以监听原生native事件、为什么<code>.sync</code>可以实现props的同步等一系列问题。</p>
+<p><a href="https://gitee.com/mdiep/LearnVue/blob/master/Html/component.html" target="_blank" rel="noopener">整个博客使用的源代码-请点击</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/blog-2018-05-08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2655,7 +2944,7 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2677,7 +2966,7 @@ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.c
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
