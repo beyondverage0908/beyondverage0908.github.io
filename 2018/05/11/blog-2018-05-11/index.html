@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容   整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息">
+<meta name="description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容  整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息会">
 <meta name="keywords" content="Vue,事件反馈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue组件二-事件反馈 - 子组件向父组件发送消息，父组件监听消息">
 <meta property="og:url" content="http://yoursite.com/2018/05/11/blog-2018-05-11/index.html">
 <meta property="og:site_name" content="Mdiep">
-<meta property="og:description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容   整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息">
+<meta property="og:description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容  整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息会">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/message_center_pattern.jpg">
-<meta property="og:updated_time" content="2018-05-13T09:43:48.718Z">
+<meta property="og:updated_time" content="2018-05-13T09:48:31.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue组件二-事件反馈 - 子组件向父组件发送消息，父组件监听消息">
-<meta name="twitter:description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容   整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息">
+<meta name="twitter:description" content="开始Vue组件是学习Vue框架最比较难的部分，而这部分难点我认为可以分为三个部分学习，即  组件的传值 - 父组件向子组件中传值 事件回馈 - 子组件向父组件发送消息，父组件监听消息 分发内容  整个博客使用的源代码-请点击 所以将用三篇博客分别进行介绍以上三种情况和使用 消息监听，消息发送在理解Vue事件之前，可以简单理解一下消息中心的设计模式，如下图，即每一个订阅者，都可以去订阅消息。而消息会">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/beyondverage0908/Blog/master/resoure/message_center_pattern.jpg">
 
 
@@ -338,7 +338,7 @@
 <ol>
 <li><a href="https://beyondverage0908.github.io/2018/05/08/blog-2018-05-08/" target="_blank" rel="noopener">组件的传值 - 父组件向子组件中传值</a></li>
 <li><a href="https://beyondverage0908.github.io/2018/05/11/blog-2018-05-11/" target="_blank" rel="noopener">事件回馈 - 子组件向父组件发送消息，父组件监听消息</a></li>
-<li>分发内容 </li>
+<li><a href="https://beyondverage0908.github.io/2018/05/13/blog-2018-05-13/" target="_blank" rel="noopener">分发内容</a></li>
 </ol>
 <p><a href="https://gitee.com/mdiep/LearnVue/blob/master/Html/component.html" target="_blank" rel="noopener">整个博客使用的源代码-请点击</a></p>
 <p>所以将用三篇博客分别进行介绍以上三种情况和使用</p>
